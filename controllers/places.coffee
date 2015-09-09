@@ -10,6 +10,7 @@ class PlacesController
 
   addVibe: (request, response) ->
     slug = request.params.slug
+    console.log "Got vibe reading for #{slug}: #{JSON.stringify(request.body)}"
     Place.findBySlug slug, (err, place) ->
       return response.status(500).send(err).end() if err
       reading = request.body
