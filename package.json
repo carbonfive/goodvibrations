@@ -1,0 +1,19 @@
+{
+  "author": "Carbon Five",
+  "name": "good-vibrations",
+  "description": "Vibe DNA - vibe detector",
+  "version": "1.0.0",
+  "repository": {
+    "url": "git@github.com:carbonfive/goodvibrations.git"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+    "express": "4",
+    "mongoose": "4",
+    "coffee-script": "1",
+    "underscore": "1"
+  },
+  "devDependencies": {
+  }
+}
