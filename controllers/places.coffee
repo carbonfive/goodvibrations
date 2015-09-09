@@ -3,17 +3,18 @@ Place = require '../models/place'
 class PlacesController
 
   show: (request, response) ->
-    id = request.params.id
-    Place.findById id, (err, place) ->
+    slug = request.params.slug
+    Place.findBySlug slug, (err, place) ->
       throw err if err
-      response.render place, { place }
+      response.render 'place', { place }
 
   addVibe: (request, response) ->
-    id = request.params.id
-    Place.findById id, (err, place) ->
-      throw err if err
-      vibe = request.body
-      place.addVibe vibe, (err) ->
-        throw err if err
+    slug = request.params.slug
+    Place.findBySlug slug, (err, place) ->
+      return response.status(500).send(err).end() if err
+      reading = request.body
+      place.addReading reading, (err) ->
+        return response.status(500).send(err).end() if err
+        response.status(200).end()
 
 module.exports = new PlacesController

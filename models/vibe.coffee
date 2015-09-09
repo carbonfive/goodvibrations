@@ -1,15 +1,9 @@
 mongoose = require './mongoose'
 
-ReadingSchema = new mongoose.Schema
-  ambientLight: { type: Number }
-  ambientNoise: { type: Number }
-  numPhones:    { type: Number }
-, { _id: false }
-
 VibeSchema = new mongoose.Schema
   slug:      { type: String, required: true }
   timestamp: { type: Date, required: true }
-  readings:  [ ReadingSchema ]
+  readings:  mongoose.Schema.Types.Mixed
 
 VibeSchema.statics =
   hourStamp: (d) ->
@@ -24,11 +18,10 @@ VibeSchema.statics =
     timestamp = @hourStamp now
     m = now.getMinutes()
     s = now.getSeconds()
+    reading.timestamp = m * 60 + s
 
-    setter = { $set: undefined }
-    setter["readings.#{m * 60 + s}"] = reading
-    options = { upsert: true }
-    Vibe.update { slug, timestamp }, setter, options, done
+    arr = [ m*60+s, reading.ambientLight, reading.ambientNoise, reading.numPhones ]
+    Vibe.update { slug, timestamp }, { $push: { readings: arr } }, { upsert: true }, done
 
 Vibe = mongoose.model 'Vibe', VibeSchema
 

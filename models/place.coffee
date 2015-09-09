@@ -18,13 +18,13 @@ PlaceSchema.statics =
       return done err, place unless place
       Vibe.findRecent slug, (err, vibes) ->
         place.vibes = vibes
-        done err, vibes
+        done err, place
 
 PlaceSchema.methods =
 
   mostRecentReading: ->
     latestVibe = _(@vibes).last()
-    _.chain(latestVibe.readings).compact().last().value()
+    _.chain(latestVibe.readings).last().value()
 
   addReading: (reading, done) ->
     Vibe.add @slug, reading, done

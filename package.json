@@ -9,9 +9,11 @@
   "scripts": {
   },
   "dependencies": {
-    "express": "4",
-    "mongoose": "4",
+    "body-parser": "1",
     "coffee-script": "1",
+    "express": "4",
+    "jade": "1",
+    "mongoose": "4",
     "underscore": "1"
   },
   "devDependencies": {
