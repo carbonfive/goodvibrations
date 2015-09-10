@@ -1,5 +1,6 @@
 Place = require '../models/place'
 Vibe  = require '../models/vibe'
+ident = require '../models/ident'
 
 class PlacesController
 
@@ -26,8 +27,22 @@ class PlacesController
   addSample: (request, response) ->
     slug = request.params.slug
     console.log "Got sample for #{slug}"
-    console.log request.body
-    Place.findBySlug slug, (err, place) ->
+    ident request.body, (err, result) ->
       return response.status(500).send(err).end() if err
+      console.log result[0]
+      song = result[0].title
+      artist = result[0].artists[0].name
+      genre = null
+      Place.findBySlug slug, (err, place) ->
+        return response.status(500).send(err).end() if err
+        unless place.vibe
+          place.vibe = new Vibe()
+          place.save()
+        place.vibe.addReading 'musicSong', song
+        place.vibe.addReading 'musicArtist', artist
+        place.vibe.addReading 'musicGenre', genre
+        place.vibe.save (err, vibe) ->
+          return response.status(500).send(err).end() if err
+          response.status(200).end()
 
 module.exports = new PlacesController

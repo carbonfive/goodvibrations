@@ -41,9 +41,8 @@ identify = (data, options, cb) ->
     formData: formData
   , cb
 
-#bitmap = fs.readFileSync 'sample.wav'
-bitmap = fs.readFileSync '../tmp/fake-empire.mp3.wav'
-
-identify new Buffer(bitmap), defaultOptions, (err, httpResponse, body) ->
-  console.log err if err
-  console.log body
+module.exports = (bits, done) ->
+  identify new Buffer(bits), defaultOptions, (err, resp, body) ->
+    return done err if err
+    json = JSON.parse body
+    done null, json.metadata.music

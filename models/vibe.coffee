@@ -5,6 +5,9 @@ VibeSchema = new mongoose.Schema
   numPhones: Number
   ambientNoise: Number
   ambientLight: Number
+  musicSong: String
+  musicArtist: String
+  musicGenre: String
 
 VibeSchema.methods =
   addReading: (name, value) ->
