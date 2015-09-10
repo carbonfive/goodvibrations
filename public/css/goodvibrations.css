@@ -1,3 +1,105 @@
+.icon {
+  margin: 0 auto;
+  display: block;
+  overflow: hidden; }
+
+.icon-density {
+  width: 42px;
+  height: 57px; }
+  .icon-density.icon-density-1 {
+    background-image: url(../images/icons/iconCrowdSparse.png); }
+  .icon-density.icon-density-2 {
+    background-image: url(../images/icons/iconCrowdBusy.png); }
+  .icon-density.icon-density-3 {
+    background-image: url(../images/icons/iconCrowdCrowded.png); }
+  .icon-density.icon-density-4 {
+    background-image: url(../images/icons/iconCrowdPacked.png); }
+
+.ambience-container {
+  width: 90px;
+  margin: 0 auto; }
+
+.icon-noise {
+  float: left;
+  width: 35px;
+  height: 38px;
+  margin-left: 10px; }
+  .icon-noise.icon-noise-Quiet {
+    background-image: url(../images/icons/iconNoiseQuiet.png); }
+  .icon-noise.icon-noise-Bustling {
+    background-image: url(../images/icons/iconNoiseBustling.png); }
+  .icon-noise.icon-noise-Loud {
+    background-image: url(../images/icons/iconNoiseLoud.png); }
+  .icon-noise.icon-noise-Raging {
+    background-image: url(../images/icons/iconNoiseLoud.png); }
+
+.icon-light {
+  float: left;
+  width: 40px;
+  height: 40px; }
+  .icon-light.icon-light-Dim {
+    background-image: url(../images/icons/iconLightDim.png); }
+  .icon-light.icon-light-Warm {
+    background-image: url(../images/icons/iconLightWarm.png); }
+  .icon-light.icon-light-Bright {
+    background-image: url(../images/icons/iconLightBright.png); }
+
+.icon-gender-batman {
+  float: left;
+  width: 39px;
+  height: 39px;
+  background-image: url(../images/icons/iconBatman.png); }
+
+.icon-gender-catwoman {
+  float: left;
+  width: 32px;
+  height: 35px;
+  margin-left: 10px;
+  background-image: url(../images/icons/iconCatWoman.png); }
+
+.gender-container {
+  overflow: hidden;
+  width: 100px;
+  margin: 0 auto; }
+
+.gender-percentage {
+  background-color: #5D5D5D;
+  height: 10px;
+  margin-top: 10px; }
+  .gender-percentage .gender-percentage-bar {
+    background-color: #dddddd;
+    height: 10px; }
+
+.icon-music {
+  width: 31px;
+  height: 37px;
+  background-image: url(../images/icons/iconMusic.png); }
+
+.payment-container {
+  margin: 0 auto;
+  width: 100px;
+  margin-top: 40px; }
+
+.icon-cash-yes {
+  float: left;
+  width: 42px;
+  height: 30px;
+  background-image: url(../images/icons/iconCashYes.png); }
+
+.icon-credit-yes {
+  float: left;
+  width: 39px;
+  height: 25px;
+  margin-left: 10px;
+  background-image: url(../images/icons/iconCreditYes.png); }
+
+.icon-all-drinks {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 82px;
+  height: 45px;
+  background-image: url(../images/icons/iconAllDrinks.png); }
+
 html {
   background-color: black;
   color: white; }

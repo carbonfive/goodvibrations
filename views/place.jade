@@ -28,23 +28,36 @@ block content
       #gender.vibe-detail
         h2 Gender
         h3 #{place.vibe.gender().percentage}%
+        .gender-container
+          .icon-gender-batman
+          .icon-gender-catwoman
+        .gender-percentage
+          .gender-percentage-bar(style="width:#{place.vibe.gender().percentage}%")
       #density.vibe-detail
         h2 Density
         h3 #{place.vibe.density().name}
-        h3 #{place.vibe.density().num}
+        .icon.icon-density(class="icon-density-#{place.vibe.density().num}")
     section.vibe-details
       #now-playing.vibe-detail
         h2 Now Playing
         h3 #{place.vibe.musicSong} by #{place.vibe.musicArtist}
         h3 #{place.vibe.musicGenre}
+        .icon.icon-music
       #ambiance.vibe-detail
         h2 Ambiance
         h3 #{place.vibe.ambience().light} and #{place.vibe.ambience().noise}
+        .ambience-container
+          .icon-light(class="icon-light-#{place.vibe.ambience().light}")
+          .icon-noise(class="icon-noise-#{place.vibe.ambience().noise}")
     section.vibe-details
       #payment.vibe-detail
         h2 Payment
+        .payment-container
+          .icon.icon-cash-yes
+          .icon.icon-credit-yes
       #drinks.vibe-detail
         h2 Drinks
+        .icon-all-drinks
 
   footer
     a.button(href='#') Check more vibes
