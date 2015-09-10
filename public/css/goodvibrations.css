@@ -1,0 +1,78 @@
+html {
+  background-color: black;
+  color: white; }
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif; }
+
+a {
+  color: white;
+  text-decoration: none; }
+
+.vibe-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+
+.vibe-detail {
+  flex: 1;
+  background: gray;
+  min-width: 50px;
+  min-height: 150px;
+  margin-bottom: 10px;
+  padding: 10px; }
+  .vibe-detail:first-child {
+    margin-right: 10px; }
+  .vibe-detail:last-child {
+    margin-right: 0; }
+
+header, footer {
+  margin: 0 20px; }
+
+header h2 {
+  text-transform: uppercase;
+  font-size: 12px; }
+
+.location-name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 48px; }
+
+footer {
+  text-align: center;
+  padding-bottom: 30px; }
+
+a {
+  font-weight: bold; }
+
+.vibe-detail h2 {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: black;
+  margin: 0; }
+
+#scene {
+  background-color: #3AC3FF; }
+
+#gender {
+  background-color: #FFDE3A; }
+
+#density {
+  background-color: #FE0170; }
+
+#now-playing {
+  background-color: #3AC3FF; }
+
+#ambiance {
+  background-color: #FC7333; }
+
+#payment {
+  background-color: #C681FF; }
+
+#drinks {
+  background-color: #00EB7C; }
+
+/*# sourceMappingURL=goodvibrations.css.map */

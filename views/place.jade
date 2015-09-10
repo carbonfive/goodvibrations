@@ -3,6 +3,28 @@ extends ./base.jade
 block head
 
 block content
-  .place
-    h1 #{place.name}
-    h2 #{place.vibe}
+  header
+    #logo
+    h2 The vibe is overflowing at
+    h1.location-name #{place.name}
+  section.vibe-details
+    #scene.vibe-detail
+      h2 Scene
+  section.vibe-details
+    #gender.vibe-detail
+      h2 Gender
+    #density.vibe-detail
+      h2 Density
+  section.vibe-details
+    #now-playing.vibe-detail
+      h2 Now Playing
+    #ambiance.vibe-detail
+      h2 Ambiance
+  section.vibe-details
+    #payment.vibe-detail
+      h2 Payment
+    #drinks.vibe-detail
+      h2 Drinks
+  footer
+    p Vibe last checked: Today at 5:00pm
+    a(href='#') Refresh your vibe
