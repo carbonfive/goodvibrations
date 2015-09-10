@@ -7,37 +7,41 @@ block content
     #logo
     h2 The vibe is overflowing at
     h1.location-name #{place.name}
-    p.last-checked
-      | Last checked&nbsp;
-      abbr.timeago(title='2008-07-17T09:24:17Z') July 17, 2008
-  section.vibe-details
-    #scene.vibe-detail
-      h2 Scene
-      .scene-details
-        div
-          h3 Bro
-        div
-          h3 Expect:
-          p Popped collars
-          p Lots of hats
-          p Regrettable tribal tattoos
-  section.vibe-details
-    #gender.vibe-detail
-      h2 Gender
-    #density.vibe-detail
-      h2 Density
-  section.vibe-details
-    #now-playing.vibe-detail
-      h2 Now Playing
-      h3 Boxes of Cereal by Phish
-    #ambiance.vibe-detail
-      h2 Ambiance
-      h3 Warm and bustling
-  section.vibe-details
-    #payment.vibe-detail
-      h2 Payment
-    #drinks.vibe-detail
-      h2 Drinks
+    if place.vibe
+      p.last-checked
+        | Last checked&nbsp;
+        abbr.timeago(title='#{place.vibe.timestamp}') July 17, 2008
+    else
+      p No vibe readings
+  if place.vibe
+    section.vibe-details
+      #scene.vibe-detail
+        h2 Scene
+        .scene-details
+          div
+            h3 Bro
+          div
+            h3 Expect:
+            p Popped collars
+            p Lots of hats
+            p Regrettable tribal tattoos
+    section.vibe-details
+      #gender.vibe-detail
+        h2 Gender
+      #density.vibe-detail
+        h2 Density
+    section.vibe-details
+      #now-playing.vibe-detail
+        h2 Now Playing
+        h3 Boxes of Cereal by Phish
+      #ambiance.vibe-detail
+        h2 Ambiance
+        h3 Warm and bustling
+    section.vibe-details
+      #payment.vibe-detail
+        h2 Payment
+      #drinks.vibe-detail
+        h2 Drinks
   footer
     a(href='#') Check more vibes
     br
