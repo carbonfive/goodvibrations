@@ -21,6 +21,14 @@ VibeSchema.methods =
     else
       @[name] = value
 
+  scene: ->
+    if @words['bro'] > 0 and @genderRatio < 1
+      { name: 'Bro', expectations: [ 'Popped collars', 'Lots of hats', 'Regrettable tribal tatoos' ] }
+    else if @ambientNoise > 0.2
+      { name: 'Hoppin\'', expectations: [ 'Dancing', 'Yelling', 'And hopping of course' ] }
+    else
+      { name: 'Chill', expectations: [ 'Casual conversation', 'Craft beer appreciation', 'Small plates mastication' ] }
+
 Vibe = mongoose.model 'Vibe', VibeSchema
 
 module.exports = Vibe

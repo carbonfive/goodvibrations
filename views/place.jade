@@ -19,12 +19,12 @@ block content
         h2 Scene
         .scene-details
           div
-            h3 Bro
+            h3 #{place.vibe.scene().name}
           div
             h3 Expect:
-            p Popped collars
-            p Lots of hats
-            p Regrettable tribal tattoos
+            p #{place.vibe.scene().expectations[0]}
+            p #{place.vibe.scene().expectations[1]}
+            p #{place.vibe.scene().expectations[2]}
     section.vibe-details
       #gender.vibe-detail
         h2 Gender
