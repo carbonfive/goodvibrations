@@ -22,7 +22,7 @@ VibeSchema.methods =
       @[name] = value
 
   scene: ->
-    if @words['bro'] > 0 and @genderRatio < 1
+    if @words['bro'] > 0
       { name: 'Bro', expectations: [ 'Popped collars', 'Lots of hats', 'Regrettable tribal tatoos' ] }
     else if @ambientNoise > 0.2
       { name: 'Hoppin\'', expectations: [ 'Dancing', 'Yelling', 'And hopping of course' ] }
