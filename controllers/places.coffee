@@ -16,9 +16,6 @@ class PlacesController
     Place.findBySlug slug, (err, place) ->
       return response.status(500).send(err).end() if err
       reading = request.body
-      unless place.vibe
-        place.vibe = new Vibe()
-        place.save()
       place.vibe.addReading name, value for name, value of reading
       place.vibe.save (err, vibe) ->
         return response.status(500).send(err).end() if err
@@ -32,9 +29,6 @@ class PlacesController
       console.log "... #{music.track} by #{music.artist} (#{music.genre})"
       Place.findBySlug slug, (err, place) ->
         return response.status(500).send(err).end() if err
-        unless place.vibe
-          place.vibe = new Vibe()
-          place.save()
         place.vibe.addReading 'musicSong', music.track
         place.vibe.addReading 'musicArtist', music.artist
         place.vibe.addReading 'musicGenre', music.genre

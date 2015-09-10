@@ -18,7 +18,16 @@ app.listen 3000, ->
   console.log "Listening on #{@address().address}:#{@address().port}"
 
 Place = require './models/place'
-Place.remove {}, (err) ->
+Vibe = require './models/vibe'
+Place.findBySlug 'kates', (err, place) ->
   throw err if err
-  Place.create { slug: 'kates', name: 'Kate O\'Briens' }, (err, place) ->
-    throw err if err
+  unless place
+    console.log "Creating Kate O'Briens !"
+    Place.create { slug: 'kates', name: 'Kate O\'Briens' }, (err, place) ->
+      throw err if err
+      place.vibe = new Vibe()
+      place.vibe.timestamp = new Date()
+      place.vibe.save (err, vibe) ->
+        throw err if err
+      place.save (err, vibe) ->
+        throw err if err

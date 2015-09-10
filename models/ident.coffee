@@ -2,6 +2,7 @@ url = require('url')
 fs = require('fs')
 crypto = require('crypto')
 request = require('request')
+xml2js = require('xml2js')
 
 defaultOptions =
   host: 'ap-southeast-1.api.acrcloud.com',
@@ -61,21 +62,23 @@ gracenote = (artist, track, done) ->
 """
   request.post { url, method, body }, (err, resp, body) ->
     return done err if err
-    console.log body
-    done null, {}
+    xml2js.parseString body, (err, result) ->
+      return done err if err
+      resp = result.RESPONSES.RESPONSE[0]
+      album = resp.ALBUM[0]
+      genre = album.GENRE[0]._
+      done null, { genre }
 
 module.exports = (bits, done) ->
   identify new Buffer(bits), defaultOptions, (err, resp, body) ->
     return done err if err
-    console.log body
     json = JSON.parse body
-    console.log json
     music = json.metadata.music[0]
     return done null, {} unless music
 
     track = music.title
     artist = music.artists[0]?.name
-    gracenote artist, track, (err, resp, body) ->
+    gracenote artist, track, (err, result) ->
       return done err if err
-      genre = null
+      genre = result.genre
       done err, { artist, track, genre }
