@@ -13,6 +13,11 @@ body {
 a {
   color: white;
   text-decoration: none;
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid white;
+  margin-top: 1em;
+  font-size: 14px;
 }
 
 .vibe-details {
@@ -24,6 +29,8 @@ a {
 .vibe-detail {
   flex: 1;
   background: gray;
+  color: black;
+  font-size: 12px;
   min-width: 50px;
   min-height: 150px;
   margin-bottom: 10px;
@@ -31,6 +38,8 @@ a {
   &:first-child { margin-right: 10px; }
   &:last-child  { margin-right: 0; }
 }
+
+
 
 header, footer {
   margin: 0 20px;
@@ -61,8 +70,12 @@ a {
 .vibe-detail h2 {
   text-transform: uppercase;
   font-size: 12px;
-  color: black;
   margin: 0;
+}
+
+.vibe-detail h3 {
+  font-size: 12px;
+  font-weight: bold;
 }
 
 #scene {
@@ -91,4 +104,14 @@ a {
 
 #drinks {
   background-color: $green;
+}
+
+.scene-details {
+  display: flex;
+
+  div {
+    flex: 1;
+
+    p { margin: 0 }
+  }
 }
