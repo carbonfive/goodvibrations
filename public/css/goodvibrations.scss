@@ -21,9 +21,14 @@ a {
   font-size: 14px;
 }
 
+#logo-wrapper {
+  background: $gray;
+  padding: 16px 0;
+}
 #logo {
-  background: url(../images/logo_vibeoverflow@2x.png);
-  height: 80px;
+  background: url(../images/logo_vibeoverflow@2x.png) no-repeat center center;
+  background-size: contain;
+  height: 40px;
   width: 100%;
 }
 
