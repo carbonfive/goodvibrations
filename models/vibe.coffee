@@ -30,23 +30,24 @@ VibeSchema.methods =
       { name: 'Chill', expectations: [ 'Casual conversation', 'Craft beer appreciation', 'Small plates mastication' ] }
 
   ambience: ->
-    if @ambientLight < 0.02
-      light = 'Dim'
-    else if @ambientLight < 0.04
-      light = 'Warm'
-    else
-      light = 'Bright'
+    light = 'Bright'
+    light = 'Dim'  if @ambientLight < 0.02
+    light = 'Warm' if @ambientLight < 0.04
 
-    if @ambientNoise < 0.02
-      noise = 'Quiet'
-    else if @ambientNoise < 0.04
-      noise = 'Bustling'
-    else if @ambientNoise < 0.06
-      noise = 'Loud'
-    else
-      noise = 'Raging'
+    noise = 'Raging'
+    noise = 'Quiet'    if @ambientNoise < 0.02
+    noise = 'Bustling' if @ambientNoise < 0.04
+    noise = 'Loud'     if @ambientNoise < 0.06
 
     { light, noise }
+
+  density: ->
+    d = { name: 'Packed',  num: 4 }
+    d = { name: 'Sparse',  num: 1 } if @numPhones < 5
+    d = { name: 'Busy',    num: 2 } if @numPhones < 10
+    d = { name: 'Crowded', num: 3 } if @numPhones < 15
+
+    d
 
 Vibe = mongoose.model 'Vibe', VibeSchema
 
