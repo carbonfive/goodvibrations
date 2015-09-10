@@ -22,7 +22,8 @@ VibeSchema.methods =
       @[name] = value
 
   scene: ->
-    if @words['bro'] > 0
+    w = @words ? {}
+    if w['bro'] > 0
       { name: 'Bro', expectations: [ 'Popped collars', 'Lots of hats', 'Regrettable tribal tatoos' ] }
     else if @ambientNoise > 0.2
       { name: 'Hoppin\'', expectations: [ 'Dancing', 'Yelling', 'And hopping of course' ] }
@@ -43,8 +44,8 @@ VibeSchema.methods =
   density: ->
     d = { name: 'Packed',  num: 4 }
     d = { name: 'Sparse',  num: 1 } if @numPhones < 5
-    d = { name: 'Busy',    num: 2 } if @numPhones < 10
-    d = { name: 'Crowded', num: 3 } if @numPhones < 15
+    d = { name: 'Busy',    num: 2 } if @numPhones < 15
+    d = { name: 'Crowded', num: 3 } if @numPhones < 25
 
     d
 
