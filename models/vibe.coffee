@@ -14,7 +14,8 @@ VibeSchema.methods =
   addReading: (name, value) ->
     @timestamp = new Date()
     if name == 'words'
-      for token in words
+      @words ?= {}
+      for token in ( value ? [] )
         @words[token] = (@words[token] ? 0) + 1
     else
       @[name] = value

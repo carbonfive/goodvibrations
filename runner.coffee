@@ -8,7 +8,7 @@ app.set 'views', "#{__dirname}/views"
 app.set 'view engine', 'jade'
 app.use express.static "public"
 app.use bodyParser.json()
-app.use bodyParser.raw type: 'audio/wav', limit: '1024kb'
+app.use bodyParser.raw type: [ 'audio/wav', 'audio/mp4' ], limit: '1024kb'
 
 app.get  '/places/:slug',        placesController.show
 app.post '/places/:slug/vibe',   placesController.addVibe

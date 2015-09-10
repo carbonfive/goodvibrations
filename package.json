@@ -9,6 +9,7 @@
   "scripts": {
   },
   "dependencies": {
+    "async": "1",
     "body-parser": "1",
     "coffee-script": "1",
     "express": "4",

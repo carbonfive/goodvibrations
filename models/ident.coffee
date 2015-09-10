@@ -4,6 +4,9 @@ crypto = require('crypto')
 request = require('request')
 xml2js = require('xml2js')
 speech = require('./speech')
+async = require 'async'
+_ = require 'underscore'
+cp = require 'child_process'
 
 defaultOptions =
   host: 'ap-southeast-1.api.acrcloud.com',
@@ -70,9 +73,10 @@ gracenote = (artist, track, done) ->
       genre = album.GENRE[0]._
       done null, { genre }
 
-module.exports = (bits, done) ->
+_music = (bits, done) ->
   identify new Buffer(bits), defaultOptions, (err, resp, body) ->
     return done err if err
+    return done resp.message unless resp.statusCode == 200
     json = JSON.parse body
     music = json.metadata?.music?[0]
     return done null, {} unless music
@@ -82,8 +86,35 @@ module.exports = (bits, done) ->
     gracenote artist, track, (err, result) ->
       return done err if err
       genre = result.genre
+      done null,  { track, artist, genre }
 
-      speech request.body, (err, result) ->
+_words = (bits, done) ->
+  speech bits, (err, result) ->
+    return done err if err
+    body = result.body
+    return done null, {} unless body
+    text = JSON.parse(body)._text
+    return done null, {} unless text
+    words = text.split(' ')
+    done null, { words }
+
+wavify = (bits, done) ->
+  fn = "#{__dirname}/../tmp/#{Date.now()}"
+  fs.writeFile fn, bits, (err) ->
+    return done err if err
+    cp.execFile "#{__dirname}/../scripts/wavify.sh", [ fn ], (err, stdout, stderr) ->
+      return done err if err
+      fs.readFile "#{fn}.wav", (err, data) ->
         return done err if err
-        words = JSON.parse(result.body._text).split(' ')
-        done err, { artist, track, genre, words }
+        done null, data
+
+module.exports = (bits, done) ->
+  wavify bits, (err, wav) ->
+    funcs = [
+      ( (cb) -> _music wav, cb ),
+      ( (cb) -> _words wav, cb )
+    ]
+    async.parallel funcs, (err, results) ->
+      combine = (memo, result) -> _(memo).extend result
+      data = _(results).reduce combine, {}
+      done err, data
