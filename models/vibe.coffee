@@ -29,6 +29,25 @@ VibeSchema.methods =
     else
       { name: 'Chill', expectations: [ 'Casual conversation', 'Craft beer appreciation', 'Small plates mastication' ] }
 
+  ambience: ->
+    if @ambientLight < 0.02
+      light = 'Dim'
+    else if @ambientLight < 0.04
+      light = 'Warm'
+    else
+      light = 'Bright'
+
+    if @ambientNoise < 0.02
+      noise = 'Quiet'
+    else if @ambientNoise < 0.04
+      noise = 'Bustling'
+    else if @ambientNoise < 0.06
+      noise = 'Loud'
+    else
+      noise = 'Raging'
+
+    { light, noise }
+
 Vibe = mongoose.model 'Vibe', VibeSchema
 
 module.exports = Vibe
