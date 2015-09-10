@@ -34,7 +34,9 @@ class PlacesController
         place.vibe.addReading 'musicArtist', data.artist if data.artist
         place.vibe.addReading 'musicGenre',  data.genre  if data.genre
         place.vibe.addReading 'words',       data.words  if data.words
+        place.vibe.markModified 'words'                  if data.words
         place.vibe.save (err, vibe) ->
+          console.log place
           return response.status(500).sendStatus(err).end() if err
           response.status(200).end()
 
