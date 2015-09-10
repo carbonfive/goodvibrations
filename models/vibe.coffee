@@ -34,10 +34,9 @@ VibeSchema.methods =
     light = 'Dim'  if @ambientLight < 0.02
     light = 'Warm' if @ambientLight < 0.04
 
-    noise = 'Raging'
+    noise = 'Loud'
     noise = 'Quiet'    if @ambientNoise < 0.02
     noise = 'Bustling' if @ambientNoise < 0.04
-    noise = 'Loud'     if @ambientNoise < 0.06
 
     { light, noise }
 
@@ -48,6 +47,11 @@ VibeSchema.methods =
     d = { name: 'Crowded', num: 3 } if @numPhones < 15
 
     d
+
+  gender: ->
+    r = parseFloat @genderRatio
+    percentage = Math.round( ( r / ( r + 1 ) ) * 100 )
+    { percentage }
 
 Vibe = mongoose.model 'Vibe', VibeSchema
 
