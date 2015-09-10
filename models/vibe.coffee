@@ -8,11 +8,16 @@ VibeSchema = new mongoose.Schema
   musicSong: String
   musicArtist: String
   musicGenre: String
+  words: mongoose.Schema.Types.Mixed
 
 VibeSchema.methods =
   addReading: (name, value) ->
     @timestamp = new Date()
-    @[name] = value
+    if name == 'words'
+      for token in words
+        @words[token] = (@words[token] ? 0) + 1
+    else
+      @[name] = value
 
 Vibe = mongoose.model 'Vibe', VibeSchema
 

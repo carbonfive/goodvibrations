@@ -3,6 +3,7 @@ fs = require('fs')
 crypto = require('crypto')
 request = require('request')
 xml2js = require('xml2js')
+speech = require('./speech')
 
 defaultOptions =
   host: 'ap-southeast-1.api.acrcloud.com',
@@ -73,7 +74,7 @@ module.exports = (bits, done) ->
   identify new Buffer(bits), defaultOptions, (err, resp, body) ->
     return done err if err
     json = JSON.parse body
-    music = json.metadata.music[0]
+    music = json.metadata?.music?[0]
     return done null, {} unless music
 
     track = music.title
@@ -81,4 +82,8 @@ module.exports = (bits, done) ->
     gracenote artist, track, (err, result) ->
       return done err if err
       genre = result.genre
-      done err, { artist, track, genre }
+
+      speech request.body, (err, result) ->
+        return done err if err
+        words = JSON.parse(result.body._text).split(' ')
+        done err, { artist, track, genre, words }
