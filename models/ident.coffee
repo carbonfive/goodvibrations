@@ -41,8 +41,41 @@ identify = (data, options, cb) ->
     formData: formData
   , cb
 
+gracenote = (artist, track, done) ->
+  url = 'https://c1781215998.web.cddbp.net/webapi/xml/1.0/'
+  client = '1781215998-FAAE8412FF83C89E61835BE4571B4406'
+  user = '280162098686141199-CF7C5F9AA018AE00D39A2C198AF6DCFF'
+  method = 'POST'
+  body = """
+<QUERIES>
+  <LANG>eng</LANG>
+  <AUTH>
+    <CLIENT>#{client}</CLIENT>
+    <USER>#{user}</USER>
+  </AUTH>
+  <QUERY CMD="ALBUM_SEARCH">
+    <TEXT TYPE="ARTIST">#{artist}</TEXT>
+    <TEXT TYPE="TRACK_TITLE">#{track}</TEXT>
+  </QUERY>
+</QUERIES>
+"""
+  request.post { url, method, body }, (err, resp, body) ->
+    return done err if err
+    console.log body
+    done null, {}
+
 module.exports = (bits, done) ->
   identify new Buffer(bits), defaultOptions, (err, resp, body) ->
     return done err if err
+    console.log body
     json = JSON.parse body
-    done null, json.metadata.music
+    console.log json
+    music = json.metadata.music[0]
+    return done null, {} unless music
+
+    track = music.title
+    artist = music.artists[0]?.name
+    gracenote artist, track, (err, resp, body) ->
+      return done err if err
+      genre = null
+      done err, { artist, track, genre }
