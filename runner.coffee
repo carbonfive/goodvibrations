@@ -10,6 +10,7 @@ app.use express.static "public"
 app.use bodyParser.json()
 app.use bodyParser.raw type: [ 'audio/wav', 'audio/mp4' ], limit: '1024kb'
 
+app.get  '/places',              placesController.index
 app.get  '/places/:slug',        placesController.show
 app.post '/places/:slug/vibe',   placesController.addVibe
 app.post '/places/:slug/sample', placesController.addSample
