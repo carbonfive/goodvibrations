@@ -18,4 +18,11 @@ class PlacesController
         return response.status(500).send(err).end() if err
         response.status(200).end()
 
+  addSample: (request, response) ->
+    slug = request.params.slug
+    console.log "Got sample for #{slug}"
+    console.log request.body
+    Place.findBySlug slug, (err, place) ->
+      return response.status(500).send(err).end() if err
+
 module.exports = new PlacesController
