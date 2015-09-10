@@ -9,7 +9,9 @@ body {
 
 a {
   color: white;
-  text-decoration: none;
+  text-decoration: none; }
+
+a.button {
   display: inline-block;
   padding: 8px 12px;
   border: 1px solid white;
@@ -45,7 +47,7 @@ a {
   .vibe-detail:last-child {
     margin-right: 0; }
 
-header, footer {
+header, footer, .places {
   margin: 20px; }
 
 header h2 {
@@ -104,5 +106,29 @@ a {
     flex: 1; }
     .scene-details div p {
       margin: 0; }
+
+.recent {
+  color: #FE0170; }
+  .recent a {
+    color: #FE0170; }
+
+.nearby {
+  color: #FFDE3A; }
+  .nearby a {
+    color: #FFDE3A; }
+
+.recommended {
+  color: #3AC3FF; }
+  .recommended a {
+    color: #3AC3FF; }
+
+.places {
+  margin-top: 3em; }
+  .places h2 {
+    font-size: 12px;
+    text-transform: uppercase; }
+  .places h3 {
+    font-size: 36px;
+    margin: 0; }
 
 /*# sourceMappingURL=goodvibrations.css.map */

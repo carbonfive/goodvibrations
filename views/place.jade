@@ -3,8 +3,6 @@ extends ./base.jade
 block head
 
 block content
-  #logo-wrapper
-    #logo
   header
     h2 The vibe is overflowing at
     h1.location-name #{place.name}
@@ -46,9 +44,9 @@ block content
         h2 Drinks
 
   footer
-    a(href='#') Check more vibes
+    a.button(href='#') Check more vibes
     br
-    a(href='#') Refresh the vibe
+    a.button(href='#') Refresh the vibe
 
   script(type="text/javascript").
     jQuery(document).ready(function() {

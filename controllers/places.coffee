@@ -10,6 +10,11 @@ class PlacesController
       throw err if err
       response.render 'place', { place }
 
+  index: (request, response) ->
+    Place.find {}, (err, places) ->
+      throw err if err
+      response.render 'places', { places }
+
   addVibe: (request, response) ->
     slug = request.params.slug
     console.log "Got vibe reading for #{slug}: #{JSON.stringify(request.body)}"
