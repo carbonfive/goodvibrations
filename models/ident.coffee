@@ -98,6 +98,12 @@ _words = (bits, done) ->
     words = text.split(' ')
     done null, { words }
 
+_genders = (fn, done) ->
+  cp.execFile "#{__dirname}/../scripts/ftomratio.rb", [ 'sox', fn ], (err, stdout, stderr) ->
+    return done err if err
+    json = JSON.parse stdout
+    done null, { genderRatio: json.f_to_m }
+
 wavify = (bits, done) ->
   fn = "#{__dirname}/../tmp/#{Date.now()}"
   fs.writeFile fn, bits, (err) ->
@@ -106,13 +112,14 @@ wavify = (bits, done) ->
       return done err if err
       fs.readFile "#{fn}.wav", (err, data) ->
         return done err if err
-        done null, data
+        done null, "#{fn}.wav", data
 
 module.exports = (bits, done) ->
-  wavify bits, (err, wav) ->
+  wavify bits, (err, fn, wav) ->
     funcs = [
       ( (cb) -> _music wav, cb ),
-      ( (cb) -> _words wav, cb )
+      ( (cb) -> _words wav, cb ),
+      ( (cb) -> _genders fn, cb )
     ]
     async.parallel funcs, (err, results) ->
       combine = (memo, result) -> _(memo).extend result

@@ -28,15 +28,16 @@ class PlacesController
       return response.status(500).sendStatus(err).end() if err
       console.log "... #{data.track} by #{data.artist} (#{data.genre})"
       console.log "... words: #{data.words}"
+      console.log "... gender: #{data.genderRatio}"
       Place.findBySlug slug, (err, place) ->
         return response.status(500).sendStatus(err).end() if err
         place.vibe.addReading 'musicSong',   data.track  if data.track
         place.vibe.addReading 'musicArtist', data.artist if data.artist
         place.vibe.addReading 'musicGenre',  data.genre  if data.genre
+        place.vibe.addReading 'genderRatio', data.genderRatio if data.genderRatio
         place.vibe.addReading 'words',       data.words  if data.words
         place.vibe.markModified 'words'                  if data.words
         place.vibe.save (err, vibe) ->
-          console.log place
           return response.status(500).sendStatus(err).end() if err
           response.status(200).end()
 

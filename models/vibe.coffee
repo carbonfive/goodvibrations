@@ -9,6 +9,7 @@ VibeSchema = new mongoose.Schema
   musicArtist: String
   musicGenre: String
   words: mongoose.Schema.Types.Mixed
+  genderRatio: String
 
 VibeSchema.methods =
   addReading: (name, value) ->
