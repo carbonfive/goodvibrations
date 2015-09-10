@@ -19,6 +19,7 @@ block content
         .scene-details
           div
             h3 #{place.vibe.scene().name}
+            .icon(class="icon-scene-#{place.vibe.scene().name}")
           div
             h3 Expect:
             p #{place.vibe.scene().expectations[0]}

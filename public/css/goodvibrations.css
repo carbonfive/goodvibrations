@@ -100,6 +100,16 @@
   height: 45px;
   background-image: url(../images/icons/iconAllDrinks.png); }
 
+.icon-scene-Bro {
+  width: 26px;
+  height: 37px;
+  background-image: url(../images/icons/iconSceneBro.png); }
+
+.icon-scene-Chill {
+  width: 49px;
+  height: 40px;
+  background-image: url(../images/icons/iconSceneChill.png); }
+
 html {
   background-color: black;
   color: white; }
